@@ -61,14 +61,14 @@ def main(event_handler: None | Callable[[Event], None] = None):
             total += 1
 
             if valid:
-                event_handler('correct')
                 score += 1
                 errors.discard(test_word)
                 print(' ВЕРНО')
+                event_handler('correct')
             else:
-                event_handler('wrong')
                 errors.add(test_word)
                 print(f' НЕВЕРНО. {test_word}')
+                event_handler('wrong')
             print(flush=True)
 
             last_pressed = None
