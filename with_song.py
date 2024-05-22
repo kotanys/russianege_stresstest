@@ -3,7 +3,7 @@ import main
 try:
     import vlc
 except ModuleNotFoundError:
-    print('Установите модуль vlc командой `python -m pip install vlc`')
+    print('Установите модуль python-vlc командой `python -m pip install python-vlc`')
     exit(1)
 
 def time_ms():
