@@ -49,5 +49,6 @@ def event_handler(event: main.Event):
         player.penalty(PENALTY_MS)
     else:
         raise ValueError(f'Unknown event {event}')
-    
-main.main(event_handler)
+   
+if __name__ == '__main__': 
+    main.main(event_handler)
