@@ -11,7 +11,6 @@ except ModuleNotFoundError:
 Event = Literal['correct', 'wrong', 'wait']
 VOWELS = 'аяэеоёиыую'
 
-last_pressed: int | None = None
 def main(event_handler: None | Callable[[Event], None] = None):
     if not event_handler:
         def mock(event): pass
@@ -27,11 +26,11 @@ def main(event_handler: None | Callable[[Event], None] = None):
     errors = set()
 
     try:
-        global last_pressed
+        last_pressed: int | None = None
         def digit_press_handler(event: keyboard.KeyboardEvent):
             if not event.name or event.name == '0' or not event.name.isdigit():
                 return
-            global last_pressed
+            nonlocal last_pressed
             last_pressed = int(event.name)
         keyboard.on_release(digit_press_handler)
 
