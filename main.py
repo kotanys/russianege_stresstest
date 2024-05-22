@@ -8,7 +8,7 @@ except ModuleNotFoundError:
     exit(1)
 
 
-Event = Literal['correct'] | Literal['wrong'] | Literal['wait']
+Event = Literal['correct', 'wrong', 'wait']
 VOWELS = 'аяэеоёиыую'
 
 last_pressed: int | None = None
