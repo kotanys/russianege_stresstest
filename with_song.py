@@ -16,8 +16,7 @@ class SongPlayer:
     
     def ensure(self):
         if self.stop_playing_time and self.stop_playing_time < time_ms():
-            self.player.stop()
-            self.stop_playing_time = None
+            self.stop()
     
     def continue_playing(self, playtime_ms: int):
         if not self.stop_playing_time:
@@ -31,8 +30,14 @@ class SongPlayer:
     def stop(self):
         self.stop_playing_time = None
         self.player.stop()
+        
+    def penalty(self, penalty_ms: int):
+        if self.stop_playing_time:
+            self.stop_playing_time -= penalty_ms
+            self.ensure()
 
 PLAYTIME_MS = 3000
+PENALTY_MS = 10000
 player = SongPlayer('chiki-briki-i-v-damki.mp3')
 
 def event_handler(event: main.Event):
@@ -41,7 +46,7 @@ def event_handler(event: main.Event):
     elif event == 'correct':
         player.continue_playing(PLAYTIME_MS)
     elif event == 'wrong':
-        player.stop()
+        player.penalty(PENALTY_MS)
     else:
         raise ValueError(f'Unknown event {event}')
     
