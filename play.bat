@@ -1,4 +1,5 @@
 @echo off
-choice /m "Ç™´ÓÁ®‚Ï ¨„ßÎ™„?"
+chcp 65001 >nul
+choice /m "–í–∫–ª—é—á–∏—Ç—å –º—É–∑—ã–∫—É?"
 if %errorlevel% equ 1 ( python with_song.py ) else ( if %errorlevel% equ 2 ( python main.py ))
 pause
